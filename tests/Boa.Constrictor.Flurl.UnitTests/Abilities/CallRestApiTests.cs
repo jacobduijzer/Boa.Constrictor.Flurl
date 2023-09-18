@@ -29,17 +29,17 @@ public class CallRestApiTests
         Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode);
     }
 
-    // [Fact]
-    // public async Task BasicRestCallShouldReturnResult()
-    // {
-    //     var actor = new Actor("Andy", new XunitLogger(_output));
-    //     actor.Can(CallRestApi.Using("https://dog.ceo/api"));
-    //
-    //     var request = DogRequests.GetRandomDog();
-    //     var response = await actor.CallsAsync(Rest.Request<DogResponse>(request));
-    //     
-    //     Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
-    // }
+    [Fact]
+    public async Task BasicRestCallShouldReturnResult()
+    {
+        var actor = new Actor("Andy", new XunitLogger(_output));
+        actor.Can(CallRestApi.Using("https://dog.ceo/api"));
+    
+        var request = DogRequests.GetRandomDog();
+        var response = await actor.CallsAsync(Rest.Request<DogResponse>(request));
+        Assert.Equal("success", response.Status);
+        Assert.NotEmpty(response.Message);
+    }
 
     public static class DogRequests
     {

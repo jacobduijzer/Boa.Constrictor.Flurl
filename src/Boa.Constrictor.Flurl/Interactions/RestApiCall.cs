@@ -22,17 +22,25 @@ namespace Boa.Constrictor.Flurl.Interactions
             await CallRequestAsync(actor);
     }
 
-    // public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, TData>
-    //     where TAbility : IFlurlAbility
-    // {
-    //     internal RestApiCall(IFlurlRequest request) : base(request)
-    //     {
-    //     }
-    //
-    //     protected override async Task<IFlurlResponse> ExecuteAsync(IFlurlClient flurlClient) =>
-    //         await flurlClient.Request(Request.Url).SendAsync(Request.Verb);
-    //
-    //     // public override async Task<TData> RequestAsAsync(IActor actor) =>
-    //     //     await CallRequestAsync(actor);
-    // }
+    public class RestApiCall<TAbility, TData> : AbstractRestQuestion<TAbility, TData>
+        where TAbility : IFlurlAbility
+    {
+        internal RestApiCall(IFlurlRequest request) : base(request)
+        {
+        }
+    
+        protected override async Task<IFlurlResponse> ExecuteAsync(IFlurlClient flurlClient) =>
+            await flurlClient.Request(Request.Url).SendAsync(Request.Verb);
+
+        public override async Task<TData> RequestAsAsync(IActor actor)
+        {
+            var ability = actor.Using<TAbility>();
+
+            var result = await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
+            return result;
+        }
+
+        // public override async Task<TData> RequestAsAsync(IActor actor) =>
+        //     await CallRequestAsync(actor);
+    }
 }
