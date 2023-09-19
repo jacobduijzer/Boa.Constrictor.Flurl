@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Boa.Constrictor.Flurl.Abilities;
 using Boa.Constrictor.Screenplay;
@@ -36,8 +37,13 @@ namespace Boa.Constrictor.Flurl.Interactions
         {
             var ability = actor.Using<TAbility>();
 
-            var result = await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
-            return result;
+            if (typeof(TData) == typeof(string))
+            {
+                var value = await ability.Client.Request(Request.Url).GetStringAsync();
+                return (TData)Convert.ChangeType(value, typeof(TData));
+            }
+
+            return await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
         }
     }
 }
