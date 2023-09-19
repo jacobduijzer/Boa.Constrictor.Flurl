@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <Title>Boa.Constrictor.Flurl</Title>
+    <Authors>Jacob Duijzer</Authors>
+    <Description>Boa Constrictor is the .NET Screenplay pattern! this package is the Flurl interaction library.</Description>
+    <PackageProjectUrl>https://github.com/jacobduijzer/Boa.Constrictor.Flurl</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/jacobduijzer/Boa.Constrictor.Flurl/blob/main/LICENSE.md</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/jacobduijzer/Boa.Constrictor.Flurl</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 
