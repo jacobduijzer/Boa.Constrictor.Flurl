@@ -39,8 +39,5 @@ namespace Boa.Constrictor.Flurl.Interactions
             var result = await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
             return result;
         }
-
-        // public override async Task<TData> RequestAsAsync(IActor actor) =>
-        //     await CallRequestAsync(actor);
     }
 }
