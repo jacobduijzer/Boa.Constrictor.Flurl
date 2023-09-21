@@ -37,13 +37,11 @@ namespace Boa.Constrictor.Flurl.Interactions
         {
             var ability = actor.Using<TAbility>();
 
-            if (typeof(TData) == typeof(string))
-            {
-                var value = await ability.Client.Request(Request.Url).GetStringAsync();
-                return (TData)Convert.ChangeType(value, typeof(TData));
-            }
-
-            return await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
+            if (typeof(TData) != typeof(string)) 
+                return await ability.Client.Request(Request.Url).GetJsonAsync<TData>();
+            
+            var value = await ability.Client.Request(Request.Url).GetStringAsync();
+            return (TData)Convert.ChangeType(value, typeof(TData));
         }
     }
 }

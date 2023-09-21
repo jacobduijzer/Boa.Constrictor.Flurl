@@ -22,12 +22,6 @@ public static class HttpBinApiCalls
             Verb = HttpMethod.Post
         };
 
-    // public static IFlurlRequest PostWithData<TData>(TData data)
-    // {
-    //     var request = new FlurlRequest("/post")
-    //     {
-    //         Verb = HttpMethod.Post
-    //     };
-    //     request.Post
-    // }
+    public static IRestAction<TData> PostWithData<TData>(TData data) =>
+        PostRequest<TData>.Create(data);
 }

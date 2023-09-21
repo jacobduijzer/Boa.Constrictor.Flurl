@@ -4,6 +4,7 @@ using Boa.Constrictor.Flurl.Abilities;
 using Boa.Constrictor.Flurl.Interactions;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Xunit;
+using Flurl.Http;
 using Xunit.Abstractions;
 
 namespace Boa.Constrictor.Flurl.UnitTests.Abilities;
@@ -81,17 +82,33 @@ public class CallRestApiTests
         Assert.Equal("application/json", response.headers.Accept);
     }
 
-    // [Fact]
-    // public async Task PostRestCallShouldReturnOk()
-    // {
-    //     var actor = new Actor("Andy", new XunitLogger(_output));
-    //     actor.Can(CallRestApi.Using(ApiBaseUrl));
-    //
-    //     var request = HttpBinApiCalls.Post();
-    //     var response = await actor.CallsAsync(Rest.Request(request));
-    //     await actor.AttemptsToAsync();
-    //     
-    //     Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
-    // }
+    [Fact]
+    public async Task PostRestCallShouldReturnOk()
+    {
+        var actor = new Actor("Andy", new XunitLogger(_output));
+        actor.Can(CallRestApi.Using(ApiBaseUrl));
+    
+        // var request = HttpBinApiCalls.PostWithData();
+        var response = await actor.CallsAsync(new PostObject<string>());
+        
+        // Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
+    }
+
+    public class PostObject<TAnswer> : IQuestionAsync<TAnswer>
+    {
+        public Task<TAnswer> RequestAsAsync(IActor actor)
+        {
+           var ability = actor.Using<IFlurlAbility>();
+           return default;
+        }
+    }
+    
+    // var result = await "https://api.mysite.com"
+    //     .AppendPathSegment("person")
+    //     .SetQueryParams(new { api_key = "xyz" })
+    //     .WithOAuthBearerToken("my_oauth_token")
+    //     .PostJsonAsync(new { first_name = firstName, last_name = lastName })
+    //     .ReceiveJson<T>();
+    // client.Request()
    
 }

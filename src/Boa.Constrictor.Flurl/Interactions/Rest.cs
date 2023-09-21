@@ -10,5 +10,8 @@ namespace Boa.Constrictor.Flurl.Interactions
         
         public static RestApiCall<CallRestApi, TData> Request<TData>(IFlurlRequest request) =>
             new RestApiCall<CallRestApi, TData>(request);
+
+        public static RestApiCall<CallRestApi> Submit(IFlurlRequest request) =>
+            new RestApiCall<CallRestApi>(request);
     }
 }
