@@ -10,7 +10,7 @@ namespace Boa.Constrictor.Flurl.Abilities
             
         }
 
-        public static CallRestApi Using(string baseUrl) =>
+        public static CallRestApi At(string baseUrl) =>
             new CallRestApi(new FlurlClient(baseUrl));
 
         public static CallRestApi Using(HttpClient httpClient) =>

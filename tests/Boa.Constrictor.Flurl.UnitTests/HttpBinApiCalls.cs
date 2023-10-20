@@ -4,7 +4,7 @@ namespace Boa.Constrictor.Flurl.UnitTests;
 
 public static class HttpBinApiCalls
 {
-    public static IFlurlRequest Get() => 
+    public static IFlurlRequest GetRequest() => 
         new FlurlRequest("/get")
         {
             Verb = HttpMethod.Get

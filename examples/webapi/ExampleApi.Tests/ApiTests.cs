@@ -22,9 +22,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnOk()
     {
-        var request = Get();
+        var request = GetRequest();
+        var question = Rest.Request(request);
         
-        var response = await _actor.CallsAsync(Rest.Request(request));
+        var response = await _actor.CallsAsync(question);
 
         Assert.Equal(HttpStatusCode.OK, (HttpStatusCode) response.StatusCode);
     }
@@ -32,14 +33,15 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnAResult()
     {
-        var request = Get();
+        var request = GetRequest();
+        var question = Rest.Request<string>(request);
         
-        var response = await _actor.CallsAsync(Rest.Request<string>(request));
+        var response = await _actor.CallsAsync(question);
         
         Assert.Equal("Hello World!", response);
     }
     
-    private static IFlurlRequest Get() => 
+    private static IFlurlRequest GetRequest() => 
         new FlurlRequest("/")
         {
             Verb = HttpMethod.Get

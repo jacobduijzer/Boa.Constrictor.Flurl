@@ -44,4 +44,11 @@ namespace Boa.Constrictor.Flurl.Interactions
             return (TData)Convert.ChangeType(value, typeof(TData));
         }
     }
+
+    // public class RestApiTask<TAbility, TData> : AbstractRestTask<TAbility>
+    //     where TAbility : IFlurlAbility
+    // {
+    //     private readonly PostRequest<TData> _data;
+    //     public RestApiTask(PostRequest<TData> request) : base(request);
+    // }
 }
