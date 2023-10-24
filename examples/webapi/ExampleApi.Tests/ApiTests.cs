@@ -1,9 +1,9 @@
 using System.Net;
+using Boa.Constrictor.Flurl;
 using Boa.Constrictor.Flurl.Abilities;
 using Boa.Constrictor.Flurl.Interactions;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Xunit;
-using Flurl.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit.Abstractions;
 
@@ -22,8 +22,7 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnOk()
     {
-        var request = GetRequest();
-        var question = Rest.Request(request);
+        var question = Rest.Request(new GetRequest(HttpMethod.Get, "/"));
         
         var response = await _actor.CallsAsync(question);
 
@@ -33,17 +32,10 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnAResult()
     {
-        var request = GetRequest();
-        var question = Rest.Request<string>(request);
+        var question = Rest.Request<string>(new GetRequest(HttpMethod.Get, "/"));
         
         var response = await _actor.CallsAsync(question);
         
         Assert.Equal("Hello World!", response);
     }
-    
-    private static IFlurlRequest GetRequest() => 
-        new FlurlRequest("/")
-        {
-            Verb = HttpMethod.Get
-        };
 }

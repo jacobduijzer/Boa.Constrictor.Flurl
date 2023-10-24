@@ -12,9 +12,10 @@ namespace Boa.Constrictor.Flurl.Interactions
         /// <summary>
         /// The REST request to call.
         /// </summary>
-        public IFlurlRequest Request { get; private set; }
 
-        protected AbstractRestQuestion(IFlurlRequest request) => Request = request;
+        public IRestAction RestAction { get; set; }
+        
+        protected AbstractRestQuestion(IRestAction restAction) => RestAction = restAction;
 
         protected abstract Task<IFlurlResponse> ExecuteAsync(IFlurlClient flurlClient);
 

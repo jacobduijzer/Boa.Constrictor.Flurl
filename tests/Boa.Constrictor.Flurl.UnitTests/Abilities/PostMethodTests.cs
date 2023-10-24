@@ -1,29 +1,36 @@
+using System.Net.Http.Headers;
 using Boa.Constrictor.Flurl.Abilities;
+using Boa.Constrictor.Flurl.Interactions;
 using Boa.Constrictor.Screenplay;
+using Boa.Constrictor.Xunit;
+using Xunit.Abstractions;
 
 namespace Boa.Constrictor.Flurl.UnitTests.Abilities;
 
 public class PostMethodTests
 {
+    private const string ApiBaseUrl = "https://httpbin.org";
+    private readonly ITestOutputHelper _output;
+    
+    public PostMethodTests(ITestOutputHelper output) =>
+        _output = output;
+    
     // [Fact]
     // public async Task PostRestCallShouldReturnOk()
     // {
-    //     var httpClient = new HttpClient
-    //     {
-    //         BaseAddress = new Uri(ApiBaseUrl),
-    //         DefaultRequestHeaders =
-    //         {
-    //             Accept = { new MediaTypeWithQualityHeaderValue("application/json") }
-    //         }
-    //     };
-    //     
+    //     // ARRANGE
     //     var actor = new Actor("Andy", new XunitLogger(_output));
-    //     actor.Can(CallRestApi.Using(httpClient));
+    //     actor.Can(CallRestApi.At(ApiBaseUrl));
     //
     //     var postData = HttpBinApiCalls.PostWithData("test");
+    //     
+    //     
+    //     //public Task AttemptsToAsync(ITaskAsync task)
+    //     
+    //     
     //     // var response = await actor.CallsAsync(Rest.Request<HttpBinApiResult>(request));
     //     // new PostObject<IRestAction<string>>(postData)
-    //     await actor.AttemptsToAsync(Rest.Submit(postData));
+    //     //await actor.AttemptsToAsync(Rest.Submit(postData));
     //     // Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
     // }
  

@@ -10,6 +10,7 @@
     <PackageLicenseUrl>https://github.com/jacobduijzer/Boa.Constrictor.Flurl/blob/main/LICENSE.md</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/jacobduijzer/Boa.Constrictor.Flurl</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
 

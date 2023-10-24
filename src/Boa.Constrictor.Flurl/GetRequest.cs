@@ -1,7 +1,7 @@
-namespace Boa.Constrictor.Flurl
+using System.Net.Http;
+
+namespace Boa.Constrictor.Flurl;
+
+public record struct GetRequest(HttpMethod Verb, string Url) : IRestAction
 {
-    public class GetRequest<TData, TResult> : IRestAction<TData>
-    {
-        
-    }
 }

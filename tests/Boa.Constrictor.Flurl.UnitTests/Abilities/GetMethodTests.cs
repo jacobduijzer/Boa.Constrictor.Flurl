@@ -4,6 +4,7 @@ using Boa.Constrictor.Flurl.Abilities;
 using Boa.Constrictor.Flurl.Interactions;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Xunit;
+using Flurl.Http;
 using Xunit.Abstractions;
 
 namespace Boa.Constrictor.Flurl.UnitTests.Abilities;
@@ -23,7 +24,7 @@ public class GetMethodTests
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.At(ApiBaseUrl));
 
-        var request = HttpBinApiCalls.GetRequest();
+        GetRequest request = new(HttpMethod.Get, "/get");
         var question = Rest.Request(request);
         
         // ACT
@@ -40,7 +41,7 @@ public class GetMethodTests
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.At(ApiBaseUrl));
 
-        var request = HttpBinApiCalls.GetRequest();
+        GetRequest request = new(HttpMethod.Get, "/get");
         var question = Rest.Request<HttpBinApiResult>(request);
         
         // ACT
@@ -62,7 +63,7 @@ public class GetMethodTests
         
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.Using(httpClient));
-        var request = HttpBinApiCalls.GetRequest();
+        GetRequest request = new(HttpMethod.Get, "/get");
         var question = Rest.Request(request);
         
         // ACT
@@ -87,7 +88,7 @@ public class GetMethodTests
         
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.Using(httpClient));
-        var request = HttpBinApiCalls.GetRequest();
+        GetRequest request = new(HttpMethod.Get, "/get");
         var question = Rest.Request<HttpBinApiResult>(request);
         
         // ACT

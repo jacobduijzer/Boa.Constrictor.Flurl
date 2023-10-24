@@ -22,6 +22,6 @@ public static class HttpBinApiCalls
             Verb = HttpMethod.Post
         };
 
-    public static IRestAction<TData> PostWithData<TData>(TData data) =>
-        PostRequest<TData>.Create(data);
+    // public static IRestAction<TData> PostWithData<TData>(TData data) =>
+    //     PostRequest<TData>.Create(data);
 }
