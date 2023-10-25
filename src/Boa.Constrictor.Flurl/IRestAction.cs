@@ -4,8 +4,8 @@ namespace Boa.Constrictor.Flurl
 {
     public interface IRestAction
     {
-       HttpMethod Verb { get; set; } 
+       HttpMethod Verb { get; } 
        
-       string Url { get; set; }
+       string Path { get; }
     }
 }

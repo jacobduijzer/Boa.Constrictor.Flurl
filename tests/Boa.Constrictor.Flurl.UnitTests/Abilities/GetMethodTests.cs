@@ -4,7 +4,6 @@ using Boa.Constrictor.Flurl.Abilities;
 using Boa.Constrictor.Flurl.Interactions;
 using Boa.Constrictor.Screenplay;
 using Boa.Constrictor.Xunit;
-using Flurl.Http;
 using Xunit.Abstractions;
 
 namespace Boa.Constrictor.Flurl.UnitTests.Abilities;
@@ -24,8 +23,7 @@ public class GetMethodTests
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.At(ApiBaseUrl));
 
-        GetRequest request = new(HttpMethod.Get, "/get");
-        var question = Rest.Request(request);
+        var question = Rest.Request(GetRequest.WithPath("/get"));
         
         // ACT
         var response = await actor.CallsAsync(question);
@@ -41,8 +39,7 @@ public class GetMethodTests
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.At(ApiBaseUrl));
 
-        GetRequest request = new(HttpMethod.Get, "/get");
-        var question = Rest.Request<HttpBinApiResult>(request);
+        var question = Rest.Request<HttpBinApiResult>(GetRequest.WithPath("/get"));
         
         // ACT
         var response = await actor.CallsAsync(question);
@@ -63,8 +60,7 @@ public class GetMethodTests
         
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.Using(httpClient));
-        GetRequest request = new(HttpMethod.Get, "/get");
-        var question = Rest.Request(request);
+        var question = Rest.Request(GetRequest.WithPath("/get"));
         
         // ACT
         var response = await actor.CallsAsync(question);
@@ -88,8 +84,7 @@ public class GetMethodTests
         
         var actor = new Actor("Andy", new XunitLogger(_output));
         actor.Can(CallRestApi.Using(httpClient));
-        GetRequest request = new(HttpMethod.Get, "/get");
-        var question = Rest.Request<HttpBinApiResult>(request);
+        var question = Rest.Request<HttpBinApiResult>(GetRequest.WithPath("/get"));
         
         // ACT
         var response = await actor.CallsAsync(question);

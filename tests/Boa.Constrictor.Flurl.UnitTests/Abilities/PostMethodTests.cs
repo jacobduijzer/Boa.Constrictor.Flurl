@@ -15,24 +15,21 @@ public class PostMethodTests
     public PostMethodTests(ITestOutputHelper output) =>
         _output = output;
     
-    // [Fact]
-    // public async Task PostRestCallShouldReturnOk()
-    // {
-    //     // ARRANGE
-    //     var actor = new Actor("Andy", new XunitLogger(_output));
-    //     actor.Can(CallRestApi.At(ApiBaseUrl));
-    //
-    //     var postData = HttpBinApiCalls.PostWithData("test");
-    //     
-    //     
-    //     //public Task AttemptsToAsync(ITaskAsync task)
-    //     
-    //     
-    //     // var response = await actor.CallsAsync(Rest.Request<HttpBinApiResult>(request));
-    //     // new PostObject<IRestAction<string>>(postData)
-    //     //await actor.AttemptsToAsync(Rest.Submit(postData));
-    //     // Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
-    // }
+    [Fact]
+    public async Task PostRestCallShouldReturnOk()
+    {
+        // ARRANGE
+        var actor = new Actor("Andy", new XunitLogger(_output));
+        actor.Can(CallRestApi.At(ApiBaseUrl));
+        PostRequest<string> postRequest = new("/post", "test");
+        await actor.CallTaskAsync(Rest.Submit(postRequest), "test", "test1");
+        // await actor.AttemptsToAsync(Rest.Submit(postRequest));
+
+        // var response = await actor.CallsAsync(Rest.Request<HttpBinApiResult>(request));
+        // new PostObject<IRestAction<string>>(postData)
+        //await actor.AttemptsToAsync(Rest.Submit(postData));
+        // Assert.Equal(HttpStatusCode.OK, (HttpStatusCode)response.StatusCode); 
+    }
  
 }
 

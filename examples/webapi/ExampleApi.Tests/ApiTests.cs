@@ -22,7 +22,7 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnOk()
     {
-        var question = Rest.Request(new GetRequest(HttpMethod.Get, "/"));
+        var question = Rest.Request(GetRequest.WithPath("/"));
         
         var response = await _actor.CallsAsync(question);
 
@@ -32,10 +32,18 @@ public class ApiTests : IClassFixture<WebApplicationFactory<Program>>
     [Fact]
     public async Task GetShouldReturnAResult()
     {
-        var question = Rest.Request<string>(new GetRequest(HttpMethod.Get, "/"));
+        var question = Rest.Request<string>(GetRequest.WithPath("/"));
         
         var response = await _actor.CallsAsync(question);
         
         Assert.Equal("Hello World!", response);
+    }
+
+    [Fact]
+    public async Task PostCanSendData()
+    {
+        var answer = Rest.Submit(new PostRequest<string>("/hello", "Jacob"));
+
+        await _actor.CallsAsync(answer);
     }
 }
