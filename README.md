@@ -1,3 +1,4 @@
+[![.NET](https://github.com/jacobduijzer/Boa.Constrictor.Flurl/actions/workflows/dotnet.yml/badge.svg)](https://github.com/jacobduijzer/Boa.Constrictor.Flurl/actions/workflows/dotnet.yml)
 # Boa.Constrictor.Flurl
 
 This is a __work in progress__, please do __not__ use any of this code yet!. The aim of this project is to implement the Screenplay Pattern with Flurl. 
